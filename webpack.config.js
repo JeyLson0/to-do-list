@@ -1,4 +1,5 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     mode: 'development',
@@ -25,9 +26,9 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_module/,
                 use: {
-                    loder: 'babel-loader',
-                    option: {
-                        preests: ['@babel/preset-env']
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
                     }
                 }
             }
@@ -36,10 +37,19 @@ module.exports = {
     devtool: 'inline-source-map',
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Webpack App',
+            title: 'To Do List',
             filename: 'index.html',
             template: 'src/template.html'
         }) 
-    ]
-
+    ],
+    devServer: {
+        static: {
+            directory: path.resolve(__dirname, 'dist')
+        },
+        port: 3000,
+        open: true,
+        hot: true,
+        compress: true,
+        historyApiFallback: true,
+    }
 }
