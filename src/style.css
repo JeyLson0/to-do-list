@@ -1,0 +1,52 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+img, picture, svg, video{
+    display: block;
+    max-width: 100%;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+}
+
+#nav-container {
+    border: 1px dashed black;
+    min-width: 5rem;
+    background-color: #5A86AD;
+}
+
+#nav-container>nav {
+    display: flex;
+    height: 100%;
+}
+
+#nav-list {
+    display: flex;
+    border: 1px dashed blue;
+    flex-direction: column;
+    list-style: none;
+    gap: 2rem;
+    padding-top: 2rem;
+    margin: 0 auto;
+}
+
+#main-container {
+    background-color: #FFFFB0;
+    width: 85%;
+    margin: 1rem auto;
+    border-radius: 2rem;
+    border: 1px dashed black;
+}
+#content-wrapper {
+
+}
+
+@media all and (min-width: 600px){
+
+}

@@ -1,5 +1,8 @@
 import {projectArr, projectIndex, createProject, removeProject, clickActiveProject, activeProject} from "./assets/scripts/project";
 import { createItem } from "./assets/scripts/itemList";
+import {completeIcon, menuIcon, priorityIcon, hashtagIcon, projectIcon, todayIcon } from "./assets/scripts/imgIndex";
+import './style.css';
+
 
 createProject('default project')
 clickActiveProject(0);
