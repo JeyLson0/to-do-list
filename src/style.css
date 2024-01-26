@@ -11,14 +11,19 @@ img, picture, svg, video{
 }
 
 body{
+    display: grid;
     min-height: 100vh;
-    display: flex;
+    /* this will change in media query */
+    grid-template-rows: 5fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 #nav-container {
     border: 1px dashed black;
     min-width: 5rem;
     background-color: #5A86AD;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
 }
 
 #nav-container>nav {
@@ -29,11 +34,16 @@ body{
 #nav-list {
     display: flex;
     border: 1px dashed blue;
-    flex-direction: column;
+    justify-content: center;
     list-style: none;
     gap: 2rem;
     padding-top: 2rem;
     margin: 0 auto;
+}
+
+#user-buttons {
+    display: flex;
+    gap: 2rem;
 }
 
 #main-container {
@@ -42,11 +52,77 @@ body{
     margin: 1rem auto;
     border-radius: 2rem;
     border: 1px dashed black;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    padding: 5%;
 }
-#content-wrapper {
 
+#hero-header-container {
+    display: flex;
+    border-bottom: 2px solid black;
+    margin-bottom: 2rem;
 }
+
+#to-do-list-title{
+    font-size: 2rem;
+}
+
+#content-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#content-container .content-item{
+    display: flex;
+    gap: 1rem;
+}
+
+.add-button-wrapper {
+    border: none;
+    background-color: #FFFFB0;
+    margin-left: auto;
+}
+
+.icons {
+    width: 2rem;
+}
+
 
 @media all and (min-width: 600px){
-
+    body{
+        /* this will change in media query */
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr 9fr;
+    }
+    #nav-container {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+    #nav-list {
+        display: flex;
+        justify-content:flex-start;
+        flex-direction: column;
+        border: 1px dashed blue;
+        list-style: none;
+        gap: 2rem;
+        padding-top: 2rem;
+        margin: 0 auto;
+    }
+    #user-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    #main-container {
+        background-color: #FFFFB0;
+        width: 85%;
+        margin: 1rem auto;
+        border-radius: 2rem;
+        border: 1px dashed black;
+        grid-column: 2/3;
+    }
+    .icons {
+        width: 3rem;
+    }
 }

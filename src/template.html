@@ -9,26 +9,25 @@
     <div id="nav-container">
         <nav>
             <ul id="nav-list">
-                <li id="menu-button">
+                <li id="menu-button" class="icons">
                     <a href="$"></a>
                     <img src="" alt="menu-icon">
                 </li>
-                <div class="hero-buttons">
-                    <li id="today-button">
+                <div id="user-buttons">
+                    <li id="today-button" class="icons">
                         <a href="$"></a>
                         <img src="" alt="today-icon">
                     </li>
-                    <li id="priority-button">
+                    <li id="priority-button" class="icons">
                         <a href="$"></a>
                         <img src="" alt="priority-icon">
                     </li>
-                    <li id="complete-button">
+                    <li id="complete-button" class="icons">
                         <a href="$"></a>
                         <img src="" alt="complete-icon">
                     </li>
-    
                 </div>
-                <li id="project-button">
+                <li id="project-button" class="icons">
                     <a href="$"></a>
                     <img src="" alt="project-icon">
                 </li>
@@ -36,18 +35,33 @@
         </nav>
     </div>
     <div id="main-container">
-        <div id="content-wrapper">
-            <!-- both inner child elements will dynamically changed when project is changed. -->
-            <div id="hero-header">
-                <h1> Project Title goes here</h1>
+        <!-- both will change based on  -->
+        <div id="hero-header-container">
+            <h1 id="to-do-list-title"> PROJECT TITLE</h1>
+            <button class="add-button-wrapper">
+                <img id="add-item" class="add-button icons" src="" alt="add-button">
+            </button>
+        </div>
+        <div id="content-container">
+            <div class="content-item">
+                <button class="check-button"></button>
+                <div class="">TODOLIST</div>
+                <div class="">this should be a button</div>
+                <!-- button element when hovered over the list item -->
             </div>
-            <div id="to-do-lists">
-                <div class="div-item">
-                    <button class="check-button"></button>
-                    <div class=""></div>
-                    <!-- button element when hovered over the list item -->
-                </div>
+            <div class="content-item">
+                <button class="check-button"></button>
+                <div class="">TODOLIST</div>
+                <div class="">this should be a button</div>
+                <!-- button element when hovered over the list item -->
             </div>
+            <div class="content-item">
+                <button class="check-button"></button>
+                <div class="">TODOLIST</div>
+                <div class="">this should be a button</div>
+                <!-- button element when hovered over the list item -->
+            </div>
+
         </div>
     </div>
     <!-- this will open if user clicked on an item or  -->
