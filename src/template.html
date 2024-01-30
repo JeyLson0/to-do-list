@@ -6,40 +6,56 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="nav-container">
-        <nav>
-            <ul id="nav-list">
-                <li id="menu-button" class="icons">
-                    <a href="$"></a>
-                    <img src="" alt="menu-icon">
-                </li>
-                <div id="user-buttons">
-                    <li id="today-button" class="icons">
-                        <a href="$"></a>
-                        <img src="" alt="today-icon">
-                    </li>
-                    <li id="priority-button" class="icons">
-                        <a href="$"></a>
-                        <img src="" alt="priority-icon">
-                    </li>
-                    <li id="complete-button" class="icons">
-                        <a href="$"></a>
-                        <img src="" alt="complete-icon">
-                    </li>
-                </div>
-                <li id="project-button" class="icons">
-                    <a href="$"></a>
+    <nav id="nav-container">
+        <ul id="nav-list">
+            <li id="menu-button" class="icons">
+                <a href="$" class="nav-link">
+                    <img sr-c="" alt="menu-icon">
+                </a>
+            </li>
+
+            <li id="today-button" class="icons">
+                <a href="$" class="nav-link">
+                    <img src="" alt="today-icon">
+                    <span class="icon-title">Today</span>
+                </a>
+            </li>
+            <li id="priority-button" class="icons">
+                <a href="$" class="nav-link">
+                    <img src="" alt="priority-icon">
+                    <span class="icon-title">Priority</span>
+                </a>
+            </li>
+            <li id="complete-button" class="icons">
+                <a href="$" class="nav-link">
+                    <img src="" alt="complete-icon">
+                    <span class="icon-title">Completed</span>
+                </a>
+            </li>
+
+            <li id="project-button" class="icons">
+                <a href="$" class="nav-link">
                     <img src="" alt="project-icon">
-                </li>
-            </ul>
-        </nav>
-    </div>
+                    <span class="icon-title">Projects</span>
+                </a>
+                <img id="add-project-list" class="add-button icons" src="" alt="add-button">
+            </li>
+
+        </ul>
+        <ul id="project-list">
+            <li class="projects"></li>
+           
+        </ul>
+
+    </nav>
+
+
     <div id="main-container">
         <!-- both will change based on  -->
         <div id="hero-header-container">
             <h1 id="to-do-list-title"> PROJECT TITLE</h1>
             <button class="add-button-wrapper">
-                <img id="add-item" class="add-button icons" src="" alt="add-button">
+                <img id="add-content-item" class="add-button icons" src="" alt="add-button">
             </button>
         </div>
         <div id="content-container">
@@ -64,7 +80,32 @@
 
         </div>
     </div>
-    <!-- this will open if user clicked on an item or  -->
-    <div id="side-container"></div>
+    
+    <!-- this will open if user clicked on an item or wants to add an item -->
+    <div id="side-container" class="hide-element">
+        <form id="list-details">
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title-input" value="">
+
+            <label for="priority">Priority:</label>
+            <select name="priority-input" id="priority">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+
+            <label for="due-date">Deadline:</label>
+            <input type="date" name="deadline" id="due-date" value="">
+
+            <label for="description">Description:</label>
+            <textarea name="description-input" id="description" cols="30" rows="10"></textarea>
+
+            <div id="button-input-container">
+                <input type="button" value="Cancel">
+                <input type="button" value="Enter">
+            </div>
+        </form>
+    </div>
+
 </body>
 </html>

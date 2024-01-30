@@ -20,31 +20,27 @@ body{
 
 #nav-container {
     border: 1px dashed black;
-    min-width: 5rem;
     background-color: #5A86AD;
     grid-column: 1 / 2;
     grid-row: 2 / 3;
 }
 
-#nav-container>nav {
-    display: flex;
-    height: 100%;
-}
 
 #nav-list {
     display: flex;
     border: 1px dashed blue;
     justify-content: center;
     list-style: none;
+    width: 100%;
     gap: 2rem;
     padding-top: 2rem;
-    margin: 0 auto;
 }
 
-#user-buttons {
-    display: flex;
-    gap: 2rem;
+
+.icon-title {
+    display: none;
 }
+
 
 #main-container {
     background-color: #FFFFB0;
@@ -88,27 +84,71 @@ body{
     width: 2rem;
 }
 
+.hide-element {
+    display: none;
+}
+
+/* This code will remove the date icon
+
+input::-webkit-calendar-picker-indicator{
+    display: none;
+}
+
+input[type="date"]::-webkit-input-placeholder{ 
+    visibility: hidden !important;
+} */
+
 
 @media all and (min-width: 600px){
     body{
         /* this will change in media query */
         grid-template-rows: 1fr;
-        grid-template-columns: 1fr 9fr;
+        grid-template-columns: 1fr 9fr 1fr;
     }
+
     #nav-container {
+        display: grid;
         grid-column: 1 / 2;
         grid-row: 1 / 2;
+        width: 100%;
+        grid-template-rows: 2fr 1fr;
     }
+
     #nav-list {
         display: flex;
+        width: 5rem;
+        align-items: center;
         justify-content:flex-start;
         flex-direction: column;
         border: 1px dashed blue;
         list-style: none;
-        gap: 2rem;
         padding-top: 2rem;
-        margin: 0 auto;
     }
+
+    .nav-link {
+       display: flex; 
+       align-items: center;
+       text-decoration: none;
+    }
+
+    .nav-link img{
+        margin: 0;
+    }
+
+    .icon-title {
+        display: none;
+        margin-left: 1rem;
+    }
+
+    #nav-container:hover{
+        width: 12rem;
+    }
+
+    #nav-container:hover .icon-title {
+        display: block;
+    }
+
+
     #user-buttons {
         display: flex;
         flex-direction: column;
@@ -123,6 +163,33 @@ body{
         grid-column: 2/3;
     }
     .icons {
-        width: 3rem;
+        width: 2rem;
+    }
+    #nav-list #project-button {
+        display: flex;
+        gap: 5rem;
+    }
+
+    body #side-container {
+        grid-template-columns: 3/4;
+        background-color: #5A86AD;
+      
+    }
+
+    #side-container #list-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    #side-container #list-details #button-input-container {
+        display: flex;
+        justify-content: center;
+    }
+
+
+
+    .hide-element {
+        display: none;
     }
 }

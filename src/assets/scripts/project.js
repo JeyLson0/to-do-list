@@ -1,9 +1,11 @@
+/* List of projects in Projects section */
 const projectArr = [];
 let activeProject; 
 
 class Project{
     constructor(){
         this._title;
+        /* Array that will contains the toDoList */
         this._toDoList = [];
     }
     set title(data) {
