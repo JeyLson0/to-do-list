@@ -1,11 +1,12 @@
-/* List of projects in Projects section */
-const projectArr = [];
-let activeProject; 
+import { links, projectTitle, projectList, addProjectListIcon, formInputProject, textInputProject } from "./DOM";
 
-class Project{
-    constructor(){
-        this._title;
-        /* Array that will contains the toDoList */
+export let activeProject;
+export let projectArr = [];
+export let projectElemArr = document.querySelectorAll('.project-link'); /* nodelist arr */
+
+export class Project{
+    constructor(arg){
+        this._title = arg;
         this._toDoList = [];
     }
     set title(data) {
@@ -19,27 +20,81 @@ class Project{
     } 
 }
 
-// Event when clicked it will create a new project
-function createProject(data){
+function createProjectObj(data){
     if (typeof data !== 'string') {
         return console.log('title not a string');
     } else {
-        let obj = new Project();
-        obj.title = data;
-        projectArr.push(obj)
+        let projectIndex = new Project(data);
+        projectArr.push(projectIndex)
     }
 }
 
-// Event when clicked it will remove that specified index.
 function removeProject(IndexClicked) {
-    projectArr.splice(IndexClicked, 1)
+    projectArr.splice(IndexClicked, 1);
+    projectElemArr.splice(IndexClicked, 1);
 }
 
-// Event when an object is clicked.
-function clickActiveProject(projectIndex){
-    let projectArrIndex = projectArr[projectIndex]
-    console.log(`Project set to ${projectArrIndex.title}`)
-    return activeProject = projectArrIndex;
+function clickActiveProject(e){
+    let projectLink = e.target.parentNode;
+    for (let i = 0; i < projectElemArr.length; i++){
+        if (projectLink == projectElemArr[i]) {
+            activeProject = projectArr[i]
+            console.log(activeProject) 
+            projectTitle.textContent = activeProject.title;
+        }
+    }
+    return activeProject
 }
 
-export {projectArr, activeProject, createProject, removeProject, clickActiveProject}
+function removeInput() {
+    textInputProject.value = '';
+}
+
+function createProjectDOM(data) {
+    let newList = document.createElement('li');
+    let paragraph = document.createElement('p');
+    newList.classList.add('project-link');
+    projectList.appendChild(newList);
+    newList.appendChild(paragraph)
+    paragraph.textContent = data
+    projectElemArr = document.querySelectorAll('.project-link');
+    addEventProjectEvents() 
+    return projectElemArr;
+}
+
+function addEventProjectEvents() {
+    projectElemArr.forEach(element => {
+        element.addEventListener('click', clickActiveProject)
+    }); 
+}
+
+
+addProjectListIcon.addEventListener('click', (e) => {
+    e.preventDefault();
+    formInputProject.classList.toggle('hide-element');
+})
+
+
+formInputProject.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(formInputProject);
+    const dataObj = Object.fromEntries(data);
+    createProjectDOM(dataObj.projectTitle);
+    createProjectObj(dataObj.projectTitle)
+    removeInput();
+})
+
+
+
+links.forEach(element => {
+    element.addEventListener('click', (e) =>{
+        e.preventDefault();
+    });
+});
+
+ 
+
+createProjectObj('Title');
+createProjectObj('Priority');
+createProjectObj('Completed');
+addEventProjectEvents();

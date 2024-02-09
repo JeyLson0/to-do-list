@@ -1,5 +1,3 @@
-import { activeProject } from "./project";
-// Create a modal which takes input from users
 
 class ListItem{
     constructor(title, description, dueDate, priority){
@@ -10,10 +8,10 @@ class ListItem{
     }
 }
 
+
 // Once clicked submit, modal will use data into this args 
-function createItem (title, description, dueDate, priority) {
+export function createItem (title, description, dueDate, priority) {
     let toDoItem = new ListItem(title, description, dueDate, priority);
     activeProject.toDoList.push(toDoItem);
 }
 
-export {createItem}
