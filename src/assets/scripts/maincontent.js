@@ -1,5 +1,4 @@
-import {addNewItemButtons, removeButtons } from "./sidecontainer";
-import { addButton, sideContainer, contentItem } from "./DOM";
+import { addButton, sideContainer, contentItem, addNewItemButtons, removeButtons } from "./DOM";
 
 
 addButton.addEventListener('click', (e) => {

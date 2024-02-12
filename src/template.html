@@ -58,29 +58,24 @@
                 <img id="add-content-item" class="add-button icons" src="" alt="add-button">
             </button>
         </div>
-        <div id="content-container">
-            <div class="content-item">
-                <button class="check-button"></button>
-                <div class="item-title">TODOLIST</div>
-            </div>
-        </div>
+        <div id="content-container"></div>
     </div>
     
     <div id="side-container" class="hide-element">
-        <form id="list-details">
+        <form id="form-item-details">
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title-input" value="" required>
+            <input type="text" id="title" name="titleInput" value="" required>
 
             <label for="priority">Priority:</label>
-            <select name="priority-input" id="priority" >
+            <select name="priorityInput" id="priority" >
                 <option value="true">Yes</option>
                 <option value="false">No</option>
             </select>
 
             <label for="due-date">Deadline:</label>
-            <input type="date" name="deadline" id="due-date" value="">
+            <input type="date" name="itemDeadline" id="due-date" value="">
 
-            <label for="description">Description:</label>
+            <label for="itemDescription">Description:</label>
             <textarea name="description-input" id="description" cols="30" rows="10"></textarea>
 
             <div id="side-button-container"></div>

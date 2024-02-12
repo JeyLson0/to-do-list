@@ -183,13 +183,13 @@ input[type="date"]::-webkit-input-placeholder{
         background-color: #5A86AD;
     }
 
-    #side-container #list-details {
+    #side-container #form-item-details {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
     }
 
-    #side-container #list-details #side-button-container {
+    #side-container #form-item-details #side-button-container {
         display: flex;
         justify-content: center;
         gap: 1rem;

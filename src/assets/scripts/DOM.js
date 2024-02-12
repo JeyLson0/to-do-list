@@ -10,7 +10,7 @@ export const formTitle = document.getElementById('title');
 export const formPriority = document.getElementById('priority');
 export const formDueDate = document.getElementById('due-date');
 export const formDescription = document.getElementById('description');
-export const formElem = document.getElementById('list-details')
+export const formItemElem = document.getElementById('form-item-details');
 
 
 /* main-content */
@@ -33,3 +33,79 @@ export const sideCancelButton = document.createElement('input');
 export const sideAddButton = document.createElement('input');
 export const sideEditButton = document.createElement('input');
 
+
+/* DOM main-content functions and events */
+
+export function createItemElements(objTitle) {
+    let contentItem = document.createElement('div');
+    contentItem.classList.add('content-item')
+    let checkButton = document.createElement('button');
+    checkButton.classList.add('check-button');
+    let itemTitle = document.createElement('div');
+    itemTitle.classList.add('item-title');
+    itemTitle.textContent = objTitle
+    contentContainer.appendChild(contentItem);
+    contentItem.appendChild(checkButton);
+    contentItem.appendChild(itemTitle);
+}
+
+export function clearBoard() {
+   while(contentContainer.hasChildNodes()){
+    contentContainer.removeChild(contentContainer.firstChild);
+   }
+}
+
+/* DOM project-container functions and events */
+
+addProjectListIcon.addEventListener('click', (e) => {
+    e.preventDefault();
+    formInputProject.classList.toggle('hide-element');
+})
+
+links.forEach(element => {
+    element.addEventListener('click', (e) =>{
+        e.preventDefault();
+    });
+});
+
+
+/* DOM right-side form functions and events */
+
+export function removeFormValues() {
+    formTitle.value = '';
+    formPriority.value = '';
+    formDueDate.value = '';
+    formDescription.value = '';
+}
+
+sideCancelButton.type = 'button';
+sideCancelButton.value = 'Cancel';
+
+sideAddButton.type = 'submit';
+sideAddButton.value = 'Enter';
+
+sideEditButton.type = 'button';
+sideEditButton.value = 'Edit';
+
+sideCancelButton.addEventListener('click', (e) => {
+    sideContainer.classList.toggle('hide-element')
+    removeFormValues();
+    removeButtons();
+})
+
+
+export function addNewItemButtons() {
+    buttonContainer.append(sideCancelButton);
+    buttonContainer.append(sideAddButton);
+}
+
+export function addEditButton() {
+    buttonContainer.append(editButton);
+}
+
+export function removeButtons() {
+    console.log(buttonContainer.childNodes.length)
+    for(let i = 0; i <= buttonContainer.childElementCount; i++){
+        buttonContainer.removeChild(buttonContainer.firstChild);
+    }
+}

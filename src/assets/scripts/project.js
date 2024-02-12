@@ -1,10 +1,10 @@
-import { links, projectTitle, projectList, addProjectListIcon, formInputProject, textInputProject } from "./DOM";
+import {  createItemElements, clearBoard, projectTitle, projectList, formInputProject, textInputProject } from "./DOM";
 
 export let activeProject;
 export let projectArr = [];
-export let projectElemArr = document.querySelectorAll('.project-link'); /* nodelist arr */
+export let projectElemArr = document.querySelectorAll('.project-link');
 
-export class Project{
+class Project{
     constructor(arg){
         this._title = arg;
         this._toDoList = [];
@@ -34,16 +34,22 @@ function removeProject(IndexClicked) {
     projectElemArr.splice(IndexClicked, 1);
 }
 
-function clickActiveProject(e){
-    let projectLink = e.target.parentNode;
+function clickActiveProject(elem){
+    clearBoard();
+    let projectLink = elem.target.parentNode;
     for (let i = 0; i < projectElemArr.length; i++){
         if (projectLink == projectElemArr[i]) {
-            activeProject = projectArr[i]
-            console.log(activeProject) 
-            projectTitle.textContent = activeProject.title;
+            setActiveProject(projectArr[i])
+            displayList()
         }
     }
-    return activeProject
+    return activeProject;
+}
+
+export function setActiveProject(projectIndex) {
+    activeProject = projectIndex;
+    projectTitle.textContent = activeProject.title;
+    return activeProject;
 }
 
 function removeInput() {
@@ -68,11 +74,10 @@ function addEventProjectEvents() {
     }); 
 }
 
-
-addProjectListIcon.addEventListener('click', (e) => {
-    e.preventDefault();
-    formInputProject.classList.toggle('hide-element');
-})
+export function pushToDoList(data) {
+    activeProject.toDoList.push(data)
+    console.log(activeProject)
+}
 
 
 formInputProject.addEventListener('submit', (e) => {
@@ -82,19 +87,22 @@ formInputProject.addEventListener('submit', (e) => {
     createProjectDOM(dataObj.projectTitle);
     createProjectObj(dataObj.projectTitle)
     removeInput();
+    formInputProject.classList.toggle('hide-element');
 })
 
+function displayList() {
+    let list = activeProject.toDoList;
+    if (list.length > 0) {
+        list.forEach(obj => {
+            console.log(obj)
+            console.log(obj.titleInput)
+            createItemElements(obj.titleInput)
+        });
+    }
 
-
-links.forEach(element => {
-    element.addEventListener('click', (e) =>{
-        e.preventDefault();
-    });
-});
-
+}
  
-
-createProjectObj('Title');
+createProjectObj('Today');
 createProjectObj('Priority');
 createProjectObj('Completed');
 addEventProjectEvents();

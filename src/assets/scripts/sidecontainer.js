@@ -1,36 +1,11 @@
-import * as form from "./form"
-import { sideAddButton, sideCancelButton, sideEditButton, buttonContainer, sideContainer } from "./DOM";
+import { formItemElem, createItemElements, removeFormValues} from "./DOM";
+import { pushToDoList } from "./project"
 
-sideCancelButton.type = 'button';
-sideCancelButton.value = 'Cancel';
-
-sideAddButton.type = 'submit';
-sideAddButton.value = 'Enter';
-
-sideEditButton.type = 'button';
-sideEditButton.value = 'Edit';
-
-sideCancelButton.addEventListener('click', (e) => {
-    sideContainer.classList.toggle('hide-element')
-    form.removeValues()
-    removeButtons();
+formItemElem.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = new FormData(formItemElem); /* formdata from the form elem */
+    const dataObj = Object.fromEntries(data); /* formdata into an obj */
+    pushToDoList(dataObj);
+    createItemElements(dataObj.titleInput);
+    removeFormValues();
 })
-
-
-export function addNewItemButtons() {
-    buttonContainer.append(sideCancelButton);
-    buttonContainer.append(sideAddButton);
-}
-
-export function addEditButton() {
-    buttonContainer.append(editButton);
-}
-
-
-export function removeButtons() {
-    console.log(buttonContainer.childNodes.length)
-    for(let i = 0; i <= buttonContainer.childElementCount; i++){
-        buttonContainer.removeChild(buttonContainer.firstChild);
-    }
-}
-
