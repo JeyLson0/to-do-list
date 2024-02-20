@@ -67,20 +67,41 @@
             <input type="text" id="title" name="titleInput" value="" required>
 
             <label for="priority">Priority:</label>
-            <select name="priorityInput" id="priority" >
-                <option value="true">Yes</option>
-                <option value="false">No</option>
+            <select name="priorityInput" id="priority" required>
+                <option selected value="true">Yes</option>
+                <option selected value="false">No</option>
             </select>
 
             <label for="due-date">Deadline:</label>
             <input type="date" name="itemDeadline" id="due-date" value="">
 
-            <label for="itemDescription">Description:</label>
-            <textarea name="description-input" id="description" cols="30" rows="10"></textarea>
+            <label for="description">Description:</label>
+            <textarea name="itemDescription" id="description" cols="30" rows="15"></textarea>
 
-            <div id="side-button-container"></div>
+            <div id="side-button-container" class="button-container"></div>
         </form>
     </div>
+
+    <dialog id="task-dialog">
+        <form id="item-task">
+            <label for="task-title">Title:</label>
+            <input disabled type="text" id="task-title" name="titleInput" value="" required>
+
+            <label for="task-priority">Priority:</label>
+            <select disabled name="priorityInput" id="task-priority" required>
+                <option selected value="true">Yes</option>
+                <option selected value="false">No</option>
+            </select>
+
+            <label for="task-due-date">Deadline:</label>
+            <input disabled type="date" name="itemDeadline" id="task-due-date" value="">
+
+            <label for="task-description">Description:</label>
+            <textarea disabled name="description-input" id="task-description" cols="30" rows="15"></textarea>
+
+            <div id="task-button-container" class="button-container"></div>
+        </form>
+    </dialog>
 
 
 </body>

@@ -1,8 +1,9 @@
-import {  createItemElements, clearBoard, projectTitle, projectList, formInputProject, textInputProject } from "./DOM";
+import { createItemElements, clearBoard, projectTitle, projectList, formInputProject, textInputProject } from "./DOM";
+import { activeProject, setActiveProject } from "./variables";
+import { addEventsToItemList } from "./modal";
 
-export let activeProject;
-export let projectArr = [];
-export let projectElemArr = document.querySelectorAll('.project-link');
+let projectArr = [];
+let projectElemArr = document.querySelectorAll('.project-link');
 
 class Project{
     constructor(arg){
@@ -39,17 +40,16 @@ function clickActiveProject(elem){
     let projectLink = elem.target.parentNode;
     for (let i = 0; i < projectElemArr.length; i++){
         if (projectLink == projectElemArr[i]) {
-            setActiveProject(projectArr[i])
-            displayList()
+            storeActiveProject(projectArr[i]);
+            projectTitle.textContent = activeProject.title;
+            displayList();
         }
     }
-    return activeProject;
 }
 
-export function setActiveProject(projectIndex) {
-    activeProject = projectIndex;
+export function storeActiveProject(projectIndex) {
+    setActiveProject(projectIndex);
     projectTitle.textContent = activeProject.title;
-    return activeProject;
 }
 
 function removeInput() {
@@ -64,7 +64,7 @@ function createProjectDOM(data) {
     newList.appendChild(paragraph)
     paragraph.textContent = data
     projectElemArr = document.querySelectorAll('.project-link');
-    addEventProjectEvents() 
+    addEventProjectEvents();
     return projectElemArr;
 }
 
@@ -75,9 +75,8 @@ function addEventProjectEvents() {
 }
 
 export function pushToDoList(data) {
-    activeProject.toDoList.push(data)
-    console.log(activeProject)
-}
+    activeProject.toDoList.push(data);
+};
 
 
 formInputProject.addEventListener('submit', (e) => {
@@ -94,15 +93,15 @@ function displayList() {
     let list = activeProject.toDoList;
     if (list.length > 0) {
         list.forEach(obj => {
-            console.log(obj)
-            console.log(obj.titleInput)
-            createItemElements(obj.titleInput)
+            createItemElements(obj.title)
+            addEventsToItemList();
         });
     }
-
 }
+
  
 createProjectObj('Today');
 createProjectObj('Priority');
 createProjectObj('Completed');
 addEventProjectEvents();
+storeActiveProject(projectArr[0]);

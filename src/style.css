@@ -6,8 +6,8 @@
 }
 
 *:disabled{
-    background: #5A86AD;
-    opacity: 0;
+    opacity: 1;
+    border: none;
 }
 
 img, picture, svg, video{
@@ -106,7 +106,33 @@ input::-webkit-calendar-picker-indicator{
 
 input[type="date"]::-webkit-input-placeholder{ 
     visibility: hidden !important;
+
 } */
+
+select{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+
+
+
+/* modal */
+#task-dialog {
+    margin: auto;
+}
+
+#item-task {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+textarea {
+    resize: none;
+}
+
 
 
 @media all and (min-width: 600px){
