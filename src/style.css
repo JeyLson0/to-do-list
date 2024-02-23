@@ -98,22 +98,13 @@ body{
 
 
 
-/* This code will remove the date icon
-
-input::-webkit-calendar-picker-indicator{
-    display: none;
-}
-
-input[type="date"]::-webkit-input-placeholder{ 
-    visibility: hidden !important;
-
-} */
 
 select{
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
+
 
 
 

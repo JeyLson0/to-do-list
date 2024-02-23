@@ -4,6 +4,7 @@ export const addProjectListIcon = document.querySelector('#add-project-list')
 export const formInputProject = document.querySelector('#form-project-title')
 export const textInputProject = document.querySelector('#input-new-project')
 export const links = document.querySelectorAll('a')
+export const navContainer = document.querySelector('#nav-container');
 
 /* side form */
 export const formTitle = document.getElementById('title');
@@ -18,6 +19,7 @@ export const addButton = document.querySelector('#hero-header-container>button')
 export const contentItem = document.querySelectorAll('.content-item');
 export const projectTitle = document.querySelector('#project-title')
 export const contentContainer = document.querySelector('#content-container');
+export const mainContainer = document.querySelector('#main-container');
 
 
 /* side container */
@@ -32,6 +34,7 @@ export const buttonContainer = document.querySelectorAll('.button-container');
 export const sideCancelButton = document.createElement('input');
 export const sideAddButton = document.createElement('input');
 
+
 sideCancelButton.addEventListener('click', cancelSideBarEvent);
 sideCancelButton.type = 'button';
 sideCancelButton.value = 'Cancel';
@@ -40,20 +43,6 @@ sideAddButton.type = 'submit';
 sideAddButton.value = 'Enter';
 
 
-/* modal */
-/* export const modal = document.getElementById('task-dialog');
-export const taskButtonContainer = document.getElementById('task-button-container');
-export const modalCancelButton = document.createElement('input');
-export const modalEditButton = document.createElement('input');
-
-modalCancelButton.addEventListener('click', cancelModalEvent);
-modalCancelButton.type = 'button';
-modalCancelButton.value = 'Cancel';
-
-modalEditButton.type = 'button';
-modalEditButton.value = 'Edit'; */
-
-/* DOM main-content functions and events */
 addButton.addEventListener('click', (e) => {
     let hidden = sideContainer.classList.toggle('hide-element')
     if (hidden == true) {
@@ -111,21 +100,12 @@ function cancelSideBarEvent() {
     removeButtons();
 }
 
-/* function cancelModalEvent() {
-    modal.close()
-    removeFormValues();
-    removeButtons();
-}
- */
+
 export function addNewItemButtons() {
     buttonContainer[0].append(sideCancelButton);
     buttonContainer[0].append(sideAddButton);
 }
 
-/* export function addEditButton() {
-    buttonContainer[1].append(modalCancelButton);
-    buttonContainer[1].append(modalEditButton);
-} */
 
 export function removeButtons() {
     buttonContainer.forEach(element => {
@@ -137,3 +117,4 @@ export function removeButtons() {
     });
    
 }
+

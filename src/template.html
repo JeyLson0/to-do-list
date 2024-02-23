@@ -85,19 +85,19 @@
     <dialog id="task-dialog">
         <form id="item-task">
             <label for="task-title">Title:</label>
-            <input disabled type="text" id="task-title" name="titleInput" value="" required>
+            <input disabled type="text" id="task-title" name="titleInput" value="" class="task-input" required>
 
             <label for="task-priority">Priority:</label>
-            <select disabled name="priorityInput" id="task-priority" required>
+            <select disabled name="priorityInput" id="task-priority"  class="task-input" required>
                 <option selected value="true">Yes</option>
                 <option selected value="false">No</option>
             </select>
 
             <label for="task-due-date">Deadline:</label>
-            <input disabled type="date" name="itemDeadline" id="task-due-date" value="">
+            <input disabled type="date" name="itemDeadline" id="task-due-date"  class="task-input" value="">
 
             <label for="task-description">Description:</label>
-            <textarea disabled name="description-input" id="task-description" cols="30" rows="15"></textarea>
+            <textarea disabled name="itemDescription" id="task-description" cols="30" rows="15"  class="task-input"></textarea>
 
             <div id="task-button-container" class="button-container"></div>
         </form>
