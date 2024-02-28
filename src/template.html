@@ -8,11 +8,6 @@
 <body>
     <nav id="nav-container">
         <ul id="nav-list">
-            <li id="menu-button" class="icons">
-                <a href="$" role="button" class="nav-link">
-                    <img src="" alt="menu-icon">
-                </a>
-            </li>
 
             <li id="today-button" class="icons">
                 <a href="$" role="button" class="nav-link  project-link">
@@ -103,6 +98,12 @@
         </form>
     </dialog>
 
-
+    <dialog id="project-dialog">
+        <form id="project-form">
+            <label for="edit-project-title">Title</label>
+            <input type="text" id="edit-project-title" name="projectTitle" value="" disabled>
+            <div id="project-button-container" class="button-container"></div>
+        </form>
+    </dialog>
 </body>
 </html>

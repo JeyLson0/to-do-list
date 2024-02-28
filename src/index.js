@@ -5,3 +5,5 @@ import { modal } from "./assets/scripts/DOM";
 import {setActiveProject} from './assets/scripts/project';
 import './assets/scripts/sidecontainer';
 import './assets/scripts/modal';
+import './assets/scripts/completebutton'
+import './assets/scripts/projecttitle'

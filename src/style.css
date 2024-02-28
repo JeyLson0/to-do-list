@@ -97,16 +97,11 @@ body{
 } 
 
 
-
-
 select{
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
-
-
-
 
 
 /* modal */
@@ -126,6 +121,7 @@ textarea {
 
 
 
+
 @media all and (min-width: 600px){
     body{
         /* this will change in media query */
@@ -138,7 +134,7 @@ textarea {
         flex-direction: column;
         grid-column: 1 / 2;
         grid-row: 1 / 2;
-        width: 100%;
+        width: 12rem;
     }
 
     #nav-list {
@@ -164,17 +160,10 @@ textarea {
     }
 
     .icon-title {
-        display: none;
+        display: block;
         margin-left: 1rem;
     }
 
-    #nav-container:hover{
-        width: 12rem;
-    }
-
-    #nav-container:hover .icon-title {
-        display: block;
-    }
 
     #user-buttons {
         display: flex;

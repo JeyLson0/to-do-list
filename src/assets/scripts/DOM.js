@@ -57,6 +57,7 @@ export function createItemElements(objTitle) {
     let contentItem = document.createElement('div');
     contentItem.classList.add('content-item');
     let checkButton = document.createElement('button');
+    checkButton.type = 'button'
     checkButton.classList.add('check-button');
     let itemTitle = document.createElement('div');
     itemTitle.classList.add('item-title');
@@ -110,7 +111,7 @@ export function addNewItemButtons() {
 export function removeButtons() {
     buttonContainer.forEach(element => {
         if (element.childElementCount > 0) {
-            for(let i = 0; i <= element.childElementCount; i++){
+            for(let i = 0; 0 < element.childElementCount; i++){
                 element.removeChild(element.firstChild);
             }
         }

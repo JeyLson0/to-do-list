@@ -1,7 +1,8 @@
-import { buttonContainer, removeFormValues, removeButtons, contentContainer,   } from "./DOM";
+import { buttonContainer, removeFormValues, removeButtons, contentContainer} from "./DOM";
 import { activeProject  } from "./variables";
 
 let activeTaskIndex;
+
 
 const modal = document.getElementById('task-dialog');
 const taskButtonContainer = document.getElementById('task-button-container');
@@ -9,17 +10,22 @@ const taskButtonContainer = document.getElementById('task-button-container');
 const modalCancelButton = document.createElement('input');
 const modalEditButton = document.createElement('input');
 const modalSubmitButton = document.createElement('input');
+const modalDeleteButton = document.createElement('input');
 const modalInputs = document.querySelectorAll('.task-input')
 const editForm = document.querySelector('#item-task')
 
-modalSubmitButton.type = 'submit';
-modalSubmitButton.value = 'Submit';
 
 modalCancelButton.type = 'button';
 modalCancelButton.value = 'Cancel';
 
 modalEditButton.type = 'button';
 modalEditButton.value = 'Edit';
+
+modalSubmitButton.type = 'submit';
+modalSubmitButton.value = 'Submit';
+
+modalDeleteButton.type = 'submit';
+modalDeleteButton.value = 'Delete';
 
 const taskTitle = document.querySelector('#task-title')
 const taskPriority = document.querySelector('#task-priority')
@@ -40,21 +46,24 @@ function cancelModalEvent() {
  function addEditButton() {
     buttonContainer[1].append(modalCancelButton);
     buttonContainer[1].append(modalEditButton);
+    buttonContainer[1].append(modalDeleteButton);
 }
 
 function addSubmitButton() {
     buttonContainer[1].append(modalCancelButton);
     buttonContainer[1].append(modalSubmitButton);
+    buttonContainer[1].append(modalDeleteButton);
 }
 
-function taskEvent(e) {
+export function taskEvent(e) {
     addEditButton()
     elemIndex(e.target)
     fillForm(activeTaskIndex);
     modal.showModal();
 }
 
-export function addEventsToItemList() {
+
+export function addEventsToItemTitle() {
     let contentItem = document.querySelectorAll('.item-title');
     contentItem.forEach((elem) => {
         elem.addEventListener('click', taskEvent)
@@ -66,7 +75,7 @@ function elemIndex(elem) {
     let contentItem = document.querySelectorAll('.item-title');
     for (let i = 0; i < contentContainer.childElementCount; i++) {
         if (contentItem[i] == elem) {
-            activeTaskIndex = i;
+           activeTaskIndex = i;
            return activeTaskIndex;
         } 
     }
@@ -74,7 +83,6 @@ function elemIndex(elem) {
 
 function fillForm(index) {
     let taskItem =  activeProject.toDoList[index];
-    console.log(taskItem)
     const {title, priority, description, deadline, completed} = taskItem;
     taskTitle.value = title;
     taskPriority.value = priority;
@@ -92,6 +100,18 @@ function editEvent() {
     addSubmitButton();
 }
 
+modalDeleteButton.addEventListener('click', deleteTask);
+
+function deleteTask(e) {
+    e.preventDefault();
+    let toDoList = activeProject.toDoList;
+    let i = activeTaskIndex;
+    contentContainer.removeChild(contentContainer.children[i])
+    toDoList.splice(i, 1);
+    modal.close()
+}
+
+
 modalSubmitButton.addEventListener('click', submitEvent)
 
 function submitEvent(e) {
@@ -108,7 +128,6 @@ function submitEvent(e) {
 
 function changeData(title, priority, deadline, description) {
     let list = activeProject.toDoList[activeTaskIndex];
-    console.log(list)
     list.title = title;
     list.priority = priority;
     list.deadline = deadline;
@@ -129,3 +148,4 @@ function checkDisableAttribute() {
         }
     })
 }
+

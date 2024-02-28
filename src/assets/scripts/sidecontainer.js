@@ -1,7 +1,7 @@
 import { formItemElem, createItemElements, removeFormValues, sideContainer, mainContainer, navContainer } from "./DOM";
-import { pushToDoList } from "./project"
-import {  addEventsToItemList } from "./modal";
-
+import { pushToDoList, projectArr } from "./project"
+import {  addEventsToItemTitle,  } from "./modal";
+import { addEventsToItemBtn } from "./completebutton";
 
 formItemElem.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -11,7 +11,8 @@ formItemElem.addEventListener("submit", (e) => {
     const item = formInput(titleInput, priorityInput, itemDeadline, itemDescription); /* factory func */
     pushToDoList(item);
     createItemElements(item.title);
-    addEventsToItemList();
+    addEventsToItemTitle();
+    addEventsToItemBtn();
     sideContainer.classList.toggle('hide-element')
     removeFormValues();
 })
@@ -22,8 +23,15 @@ function formInput(title, priority, deadline, description) {
         priority, 
         deadline, 
         description, 
-        completed: false
+        completed: false,
+        completeTask() {
+            let completedProject = projectArr[2]
+            if (this.completed == true) {
+                completedProject.toDoList.push(this);
+            }
+        }
     }
+ 
 };
 
 mainContainer.addEventListener('click', closeSideContainer, true)
@@ -35,3 +43,5 @@ function closeSideContainer() {
         removeFormValues();
     }
 }
+
+

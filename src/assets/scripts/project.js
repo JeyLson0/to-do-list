@@ -1,8 +1,9 @@
 import { createItemElements, clearBoard, projectTitle, projectList, formInputProject, textInputProject } from "./DOM";
 import { activeProject, setActiveProject } from "./variables";
-import { addEventsToItemList } from "./modal";
+import { addEventsToItemTitle } from "./modal";
+import { addEventsToItemBtn } from "./completebutton";
 
-let projectArr = [];
+export let projectArr = [];
 let projectElemArr = document.querySelectorAll('.project-link');
 
 class Project{
@@ -30,10 +31,12 @@ function createProjectObj(data){
     }
 }
 
-function removeProject(IndexClicked) {
+export function removeProject(IndexClicked) {
     projectArr.splice(IndexClicked, 1);
-    projectElemArr.splice(IndexClicked, 1);
-}
+    let htmlIndex = IndexClicked - 3;
+    projectList.removeChild(projectList.children[htmlIndex])
+    return projectElemArr = document.querySelectorAll('.project-link');
+} 
 
 function clickActiveProject(elem){
     clearBoard();
@@ -42,7 +45,7 @@ function clickActiveProject(elem){
         if (projectLink == projectElemArr[i]) {
             storeActiveProject(projectArr[i]);
             projectTitle.textContent = activeProject.title;
-            displayList();
+            return displayList();
         }
     }
 }
@@ -60,6 +63,7 @@ function createProjectDOM(data) {
     let newList = document.createElement('li');
     let paragraph = document.createElement('p');
     newList.classList.add('project-link');
+    newList.classList.add('added-link');
     projectList.appendChild(newList);
     newList.appendChild(paragraph)
     paragraph.textContent = data
@@ -73,6 +77,7 @@ function addEventProjectEvents() {
         element.addEventListener('click', clickActiveProject)
     }); 
 }
+
 
 export function pushToDoList(data) {
     activeProject.toDoList.push(data);
@@ -89,12 +94,22 @@ formInputProject.addEventListener('submit', (e) => {
     formInputProject.classList.toggle('hide-element');
 })
 
-function displayList() {
+export function displayList() {
     let list = activeProject.toDoList;
+    if (activeProject.title == 'Completed') {
+        if (list.length > 0) {
+            list.forEach(obj => {
+                createItemElements(obj.title)
+                addEventsToItemTitle();
+            });
+            return
+        }
+    }
     if (list.length > 0) {
         list.forEach(obj => {
             createItemElements(obj.title)
-            addEventsToItemList();
+            addEventsToItemTitle();
+            addEventsToItemBtn();
         });
     }
 }
