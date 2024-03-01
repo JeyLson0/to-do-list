@@ -4,5 +4,9 @@
    return activeProject = data;
  }
 
+ function setTitle(data) {
+  return activeProject.title = data
+ }
 
- export {activeProject, setActiveProject};
+
+ export {activeProject, setActiveProject, setTitle};

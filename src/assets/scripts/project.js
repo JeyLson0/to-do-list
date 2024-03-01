@@ -4,7 +4,7 @@ import { addEventsToItemTitle } from "./modal";
 import { addEventsToItemBtn } from "./completebutton";
 
 export let projectArr = [];
-let projectElemArr = document.querySelectorAll('.project-link');
+export let projectElemArr = document.querySelectorAll('.project-link');
 
 class Project{
     constructor(arg){
@@ -23,7 +23,7 @@ class Project{
 }
 
 function createProjectObj(data){
-    if (typeof data !== 'string') {
+    if (data.trim().length == 0) {
         return console.log('title not a string');
     } else {
         let projectIndex = new Project(data);
@@ -60,16 +60,20 @@ function removeInput() {
 }
 
 function createProjectDOM(data) {
-    let newList = document.createElement('li');
-    let paragraph = document.createElement('p');
-    newList.classList.add('project-link');
-    newList.classList.add('added-link');
-    projectList.appendChild(newList);
-    newList.appendChild(paragraph)
-    paragraph.textContent = data
-    projectElemArr = document.querySelectorAll('.project-link');
-    addEventProjectEvents();
-    return projectElemArr;
+    if (data.trim().length > 0) {
+        let newList = document.createElement('li');
+        let paragraph = document.createElement('p');
+        paragraph.classList.add('project-name')
+        newList.classList.add('project-link');
+        newList.classList.add('added-link');
+        projectList.appendChild(newList);
+        newList.appendChild(paragraph)
+        paragraph.textContent = data
+        projectElemArr = document.querySelectorAll('.project-link');
+        addEventProjectEvents();
+        return projectElemArr;
+    }
+ 
 }
 
 function addEventProjectEvents() {

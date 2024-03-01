@@ -1,9 +1,10 @@
 import { projectTitle, buttonContainer, removeButtons, clearBoard } from "./DOM";
 import { activeProject } from "./variables";
-import { removeProject, projectArr, storeActiveProject, displayList } from "./project";
+import { removeProject, projectArr, projectElemArr, storeActiveProject, displayList } from "./project";
 
 const projectDialog = document.querySelector('#project-dialog');
 const projectTitleInput = document.querySelector('#edit-project-title');
+const titleForm = document.querySelector('#title-project-form')
 
 const cancelProjBtn = document.createElement('button');
 cancelProjBtn.type = 'button';
@@ -84,4 +85,28 @@ function setPreviousProj(currentIndex) {
     let i = currentIndex - 1;
     storeActiveProject(projectArr[i]);
     displayList();
+}
+
+confirmProjectBtn.addEventListener('click', confirmEvent)
+
+function confirmEvent(e) {
+    e.preventDefault()
+    let data = new FormData(titleForm);
+    let dataObj = Object.fromEntries(data);
+    let dataTitle = dataObj.projectTitle;
+    activeProject.title = dataTitle;
+    projectTitle.textContent = activeProject.title
+    changeProjectListTitle();
+    projectDialog.close();
+}
+
+function changeProjectListTitle() {
+    console.log(projectArr)
+    console.log(projectElemArr)
+    for (let i = 0; projectArr.length > i; i++ ){
+        if (activeProject == projectArr[i]) {
+            console.log(projectElemArr[i].lastChild.textContent)
+            projectElemArr[i].lastChild.textContent = activeProject.title
+        }
+    }
 }
