@@ -27,33 +27,36 @@ img, picture, svg, video{
     max-width: 100%;
 }
 
+/* Refactor code for mobile  */
+
 body{
     display: grid;
     min-height: 100vh;
     background-color: #5AADAB;
-    /* this will change in media query */
-    grid-template-rows: 5fr 1fr;
-    grid-template-columns: 1fr;
+/*     grid-template-rows: 5fr 1fr;
+    grid-template-columns: 1fr; */
+    grid-template-rows: 1fr;
+    grid-template-columns: 3rem 8fr 0.1fr;
 }
 
 #nav-container {
-    border: 1px dashed black;
     background-color: #5A86AD;
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-}
+/*     grid-column: 1 / 2;
+    grid-row: 2 / 3; */    
+    grid-column: 1/2; 
 
+}
 
 #nav-list {
     display: flex;
-    border: 1px dashed blue;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     list-style: none;
     width: 100%;
-    gap: 2rem;
+    gap: 1.5rem;
     padding-top: 2rem;
+    margin-bottom: 2rem;
 }
-
 
 .icon-title {
     display: none;
@@ -63,10 +66,11 @@ body{
 #main-container {
     background-color: #FFFFB0;
     width: 100%;
-    border-left: 7px solid black;
+/*     border-left: 7px solid black; */
     border-bottom: 3px solid black;
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
+/*     grid-column: 1 / 2;
+    grid-row: 1 / 2; */
+    
     padding: 5%;
 }
 
@@ -74,6 +78,13 @@ body{
     display: flex;
     border-bottom: 2px solid black;
     margin-bottom: 2rem;
+}
+
+#project-title {
+    width: 14rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
 }
 
 #to-do-list-title{
@@ -123,8 +134,28 @@ select{
     white-space: nowrap;
 }
 
+/* left container */
+#project-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    gap: 1rem;
+    padding-top: 1rem;
+    max-height: 50vh;
+    text-align: center;
+    border-top: 1px solid black;
+    margin-top: 2rem;
+    -ms-overflow-style: none;
+    overflow: scroll;
+}
+#project-list::-webkit-scrollbar {
+    display: none;
+}
+
 /* modal */
-#task-dialog {
+#task-dialog,
+#project-dialog {
     margin: auto;
 }
 
@@ -138,12 +169,38 @@ textarea {
     resize: none;
 }
 
+/* side container */
+body #side-container {
+    grid-template-columns: 3/4;
+    background-color: #5A86AD;
+    border-left: 2px solid black;
+    padding: 0.5rem;
+}
 
+#side-container #form-item-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
 
+#side-container #form-item-details #side-button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+#input-new-project {
+    width: 100%;
+    margin-top: 1rem;
+}
 
 @media all and (min-width: 600px){
     body{
         /* this will change in media query */
+        display: grid;
+        min-height: 100vh;
+        background-color: #5AADAB;
         grid-template-rows: 1fr;
         grid-template-columns: 0.4fr 9fr 0.5fr;
     }
@@ -163,9 +220,9 @@ textarea {
         align-items: center;
         justify-content:flex-start;
         flex-direction: column;
-        border: 1px dashed blue;
         list-style: none;
         padding-top: 2rem;
+        margin-bottom: 0;
     }
 
     .nav-link {
@@ -181,6 +238,11 @@ textarea {
     .icon-title {
         display: block;
         margin-left: 1rem;
+        color: black;
+    }
+    .icon-title:hover {
+        font-weight: 600;
+        font-style: italic;
     }
 
 
@@ -197,6 +259,8 @@ textarea {
         border-radius: 2rem;
         border-left: 7px solid black;
         border-bottom: 3px solid black;
+        border-top: 1px solid black;
+        border-right: 1px solid black;
         grid-column: 2/3;
     }
 
@@ -207,6 +271,8 @@ textarea {
     body #side-container {
         grid-template-columns: 3/4;
         background-color: #5A86AD;
+        border-left: 2px solid black;
+        padding: 0.5rem;
     }
 
     #side-container #form-item-details {
@@ -219,6 +285,7 @@ textarea {
         display: flex;
         justify-content: center;
         gap: 1rem;
+        margin-top: 2rem;
     }
 
     .hide-element {
@@ -228,11 +295,14 @@ textarea {
     #project-list {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        list-style: none;
         gap: 1rem;
-        height: 60%;
+        padding-top: 1rem;
+        max-height: 50vh;
         text-align: center;
-        border: 1px solid black;
-        margin-top: 1rem;
+        border-top: 1px solid black;
+        margin-top: 2rem;
         -ms-overflow-style: none;
         overflow: scroll;
     }
@@ -241,7 +311,76 @@ textarea {
     }
     #input-new-project {
         width: 100%;
+        margin-top: 1rem;
+    }
+
+    .added-link {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .added-link:hover {
+        font-weight: 600;
+        font-style: italic;
     }
     
+    .project-name {
+        width: 80%;
+    }
+
+    #project-title {
+        width: 15rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+    }
+
+    #project-title:hover {
+        font-weight: 600;
+        font-style: italic;
+    }
+
+    .item-title:hover {
+        font-weight: 600;
+        font-style: italic;
+    }
+
+    #form-project-title {
+        align-self: center;
+    }
+    input:focus-visible {
+        outline:none;
+    }
+    input::placeholder,
+    input,
+    select {
+        text-align: center;
+    }
+    textarea{
+        padding: 10px;
+    }
+
+    label {
+        margin-top: 1rem;
+    }
+
+    .button-container input {
+       font-size: 1rem;
+       padding: 0.5rem;
+
+    }
+
+    #task-button-container{
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    input[value="Delete"]{
+        background-color: #ff000059;
+    }
 
 }
+
+

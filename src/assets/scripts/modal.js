@@ -52,7 +52,6 @@ function cancelModalEvent() {
 function addSubmitButton() {
     buttonContainer[1].append(modalCancelButton);
     buttonContainer[1].append(modalSubmitButton);
-    buttonContainer[1].append(modalDeleteButton);
 }
 
 export function taskEvent(e) {
