@@ -1,8 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = {
-    mode: 'development',
+const config = {
     entry: path.resolve(__dirname, 'src/index.js'),
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -45,7 +44,7 @@ module.exports = {
             title: 'To Do List',
             filename: 'index.html',
             template: 'src/template.html'
-        }) 
+        })
     ],
     devServer: {
         static: {
@@ -58,3 +57,5 @@ module.exports = {
         historyApiFallback: true,
     }
 }
+
+module.exports = config;
