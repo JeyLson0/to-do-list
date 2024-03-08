@@ -1,6 +1,6 @@
 import { projectTitle, buttonContainer, removeButtons, clearBoard } from "./DOM";
-import { activeProject } from "./variables";
-import { removeProject, projectArr, projectElemArr, storeActiveProject, displayList } from "./project";
+import { activeProject, projectArr, replaceActiveInArr, updateLocalStorage} from "./variables";
+import { removeProject, projectElemArr, storeActiveProject, displayList } from "./project";
 
 const projectDialog = document.querySelector('#project-dialog');
 const projectTitleInput = document.querySelector('#edit-project-title');
@@ -15,6 +15,7 @@ editProjBtn.textContent = 'Edit';
 const deleteProjBtn = document.createElement('button');
 deleteProjBtn.type = 'button';
 deleteProjBtn.textContent = 'Delete';
+deleteProjBtn.value = 'Delete';
 const confirmProjectBtn = document.createElement('button');
 confirmProjectBtn.type = 'submit';
 confirmProjectBtn.textContent = 'Accept'
@@ -76,6 +77,7 @@ function deleteProject() {
             removeProject(i);
             clearBoard();
             setPreviousProj(i);
+            updateLocalStorage();
             projectDialog.close();
         }
     }
@@ -97,15 +99,14 @@ function confirmEvent(e) {
     activeProject.title = dataTitle;
     projectTitle.textContent = activeProject.title
     changeProjectListTitle();
+    replaceActiveInArr();
+    updateLocalStorage();
     projectDialog.close();
 }
 
 function changeProjectListTitle() {
-    console.log(projectArr)
-    console.log(projectElemArr)
     for (let i = 0; projectArr.length > i; i++ ){
         if (activeProject == projectArr[i]) {
-            console.log(projectElemArr[i].lastChild.textContent)
             projectElemArr[i].lastChild.textContent = activeProject.title
         }
     }

@@ -159,6 +159,14 @@ select{
     margin: auto;
 }
 
+#title-project-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    align-items: center;
+}
+
 #item-task {
     display: flex;
     flex-direction: column;
@@ -194,6 +202,23 @@ body #side-container {
     width: 100%;
     margin-top: 1rem;
 }
+
+input[value="Delete"],
+button[value="Delete"]
+{
+    background-color: #ff000059;
+}
+
+#title-project-form label,
+    #title-project-form input,
+    #title-project-form  div button{
+        font-size: 1.2rem;
+    }
+
+    #project-button-container {
+        display: flex;
+        gap: 1rem;
+    }
 
 @media all and (min-width: 600px){
     body{
@@ -377,8 +402,21 @@ body #side-container {
         gap: 1rem;
     }
 
-    input[value="Delete"]{
+    input[value="Delete"],
+    button[value="Delete"]
+    {
         background-color: #ff000059;
+    }
+
+    #title-project-form label,
+    #title-project-form input,
+    #title-project-form  div button{
+        font-size: 1.2rem;
+    }
+
+    #project-button-container {
+        display: flex;
+        gap: 1rem;
     }
 
 }

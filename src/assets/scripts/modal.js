@@ -1,5 +1,5 @@
 import { buttonContainer, removeFormValues, removeButtons, contentContainer} from "./DOM";
-import { activeProject  } from "./variables";
+import { activeProject, projectArr, updateLocalStorage, replaceActiveInArr  } from "./variables";
 
 let activeTaskIndex;
 
@@ -82,7 +82,7 @@ function elemIndex(elem) {
 
 function fillForm(index) {
     let taskItem =  activeProject.toDoList[index];
-    const {title, priority, description, deadline, completed} = taskItem;
+    const {title, priority, description, deadline} = taskItem;
     taskTitle.value = title;
     taskPriority.value = priority;
     taskDeadline.value = deadline;
@@ -107,6 +107,8 @@ function deleteTask(e) {
     let i = activeTaskIndex;
     contentContainer.removeChild(contentContainer.children[i])
     toDoList.splice(i, 1);
+    replaceActiveInArr();
+    updateLocalStorage();
     modal.close()
 }
 
@@ -119,8 +121,10 @@ function submitEvent(e) {
     const dataObj = Object.fromEntries(data);
     const {titleInput, priorityInput, itemDeadline, itemDescription} = dataObj;
     changeData(titleInput, priorityInput, itemDeadline, itemDescription);
-    updateTitle()
-    modal.close()
+    updateTitle();
+    replaceActiveInArr();
+    updateLocalStorage();
+    modal.close();
     removeButtons();
     checkDisableAttribute() 
 }
@@ -147,4 +151,3 @@ function checkDisableAttribute() {
         }
     })
 }
-

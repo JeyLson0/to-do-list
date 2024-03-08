@@ -1,9 +1,7 @@
-import { createItemElements, clearBoard, projectTitle, projectList, formInputProject, textInputProject } from "./DOM";
-import { activeProject, setActiveProject } from "./variables";
+import { createItemElements, clearBoard, projectTitle, projectList, formInputProject, textInputProject, contentContainer } from "./DOM";
+import { activeProject, setActiveProject, projectArr, updateLocalStorage, setProjectArr} from "./variables";
 import { addEventsToItemTitle } from "./modal";
-import { addEventsToItemBtn } from "./completebutton";
 
-export let projectArr = [];
 export let projectElemArr = document.querySelectorAll('.project-link');
 
 class Project{
@@ -20,14 +18,22 @@ class Project{
     get toDoList(){
         return this._toDoList;
     } 
+    toJSON() {
+        return {
+            title : this._title,
+            toDoList : this._toDoList
+        }
+    }
 }
 
-function createProjectObj(data){
+export function createProjectObj(data){
     if (data.trim().length == 0) {
         return console.log('title not a string');
     } else {
         let projectIndex = new Project(data);
         projectArr.push(projectIndex)
+        setProjectArr(projectArr)
+        updateLocalStorage()
     }
 }
 
@@ -35,7 +41,8 @@ export function removeProject(IndexClicked) {
     projectArr.splice(IndexClicked, 1);
     let htmlIndex = IndexClicked - 3;
     projectList.removeChild(projectList.children[htmlIndex])
-    return projectElemArr = document.querySelectorAll('.project-link');
+    projectElemArr = document.querySelectorAll('.project-link')
+    updateLocalStorage();
 } 
 
 function clickActiveProject(elem){
@@ -52,6 +59,7 @@ function clickActiveProject(elem){
 
 export function storeActiveProject(projectIndex) {
     setActiveProject(projectIndex);
+    localStorage.setItem('activeProject', JSON.stringify(activeProject))
     projectTitle.textContent = activeProject.title;
 }
 
@@ -59,7 +67,7 @@ function removeInput() {
     textInputProject.value = '';
 }
 
-function createProjectDOM(data) {
+export function createProjectDOM(data) {
     if (data.trim().length > 0) {
         let newList = document.createElement('li');
         let paragraph = document.createElement('p');
@@ -71,12 +79,13 @@ function createProjectDOM(data) {
         paragraph.textContent = data
         projectElemArr = document.querySelectorAll('.project-link');
         addEventProjectEvents();
+        updateLocalStorage();
         return projectElemArr;
     }
  
 }
 
-function addEventProjectEvents() {
+export function addEventProjectEvents() {
     projectElemArr.forEach(element => {
         element.addEventListener('click', clickActiveProject)
     }); 
@@ -85,6 +94,7 @@ function addEventProjectEvents() {
 
 export function pushToDoList(data) {
     activeProject.toDoList.push(data);
+    updateLocalStorage()
 };
 
 
@@ -118,9 +128,33 @@ export function displayList() {
     }
 }
 
- 
-createProjectObj('Today');
-createProjectObj('Priority');
-createProjectObj('Completed');
-addEventProjectEvents();
-storeActiveProject(projectArr[0]);
+export function addEventsToItemBtn() {
+    let checkButton = document.querySelectorAll('.check-button'); 
+    checkButton.forEach((elem) => {
+        elem.addEventListener('click', buttonEvent)
+    })
+}
+
+function buttonEvent(e){
+    let checkButton = document.querySelectorAll('.check-button');
+    let toDoList = activeProject.toDoList;
+    for (let i = 0; i < checkButton.length; i++) {
+        if (e.target == checkButton[i]) {
+            let task = toDoList[i]
+            task.completed = true;
+            contentContainer.removeChild(contentContainer.children[i])
+            toDoList.splice(i, 1);
+            completeTask(task);
+            updateLocalStorage();
+        }
+    }
+}
+
+function completeTask(task) {
+    let completedProject = projectArr[2]
+    if (task.completed == true) {
+        completedProject.toDoList.push(task);
+    }
+}
+
+

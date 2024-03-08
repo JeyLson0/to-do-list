@@ -1,7 +1,7 @@
 import { formItemElem, createItemElements, removeFormValues, sideContainer, mainContainer, navContainer } from "./DOM";
-import { pushToDoList, projectArr } from "./project"
-import {  addEventsToItemTitle,  } from "./modal";
-import { addEventsToItemBtn } from "./completebutton";
+import { pushToDoList, addEventsToItemBtn } from "./project"
+import {  addEventsToItemTitle } from "./modal";
+
 
 formItemElem.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -17,22 +17,18 @@ formItemElem.addEventListener("submit", (e) => {
     removeFormValues();
 })
 
-function formInput(title, priority, deadline, description) {
+export function formInput(title, priority, deadline, description) {
     return {
         title, 
         priority, 
         deadline, 
         description, 
         completed: false,
-        completeTask() {
-            let completedProject = projectArr[2]
-            if (this.completed == true) {
-                completedProject.toDoList.push(this);
-            }
-        }
     }
  
 };
+
+
 
 mainContainer.addEventListener('click', closeSideContainer, true)
 navContainer.addEventListener('click', closeSideContainer, true)
@@ -43,5 +39,7 @@ function closeSideContainer() {
         removeFormValues();
     }
 }
+
+
 
 
